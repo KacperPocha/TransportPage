@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.12.1",
     "prettier": "3.0.2"
   },
   "dependencies": {

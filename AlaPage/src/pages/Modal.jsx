@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MainPage } from "./MainPage";
-import { useNavigate } from "react-router-dom";
+
 
 
 export const Modal = ({ open, onClose, handleCallback }) => {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import image from "../img/tło.jpg";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import jwt_decode from "jwt-decode";
+
 
 export const LoginPage = () => {
   const [userLogin, setNewUserLogin] = useState("");

@@ -1,8 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState } from "react";
 import { deletePost, fetchPost } from "../api/posts";
-import { Link, useNavigate } from "react-router-dom";
-import { MainPage } from "./MainPage";
+import {useNavigate } from "react-router-dom";
+
 
 export const PostList = (props) => {
   const navigate = useNavigate();

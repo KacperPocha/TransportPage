@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createPost, deletePost, fetchPost, updatedOrder } from "../api/posts";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createPost, updatedOrder } from "../api/posts";
+import { useLocation, useNavigate} from "react-router-dom";
 import { Modal } from "./Modal";
 import imgLogOut from "../img/logout.png";
 import imgFilter from "../img/filter.png";
 import { PostList } from "./PostList";
-import { EditPage } from "./EditPage";
+import { ModalTOC } from "./ModalTOC";
+
 
 export const MainPage = (props) => {
   //Date
@@ -60,12 +61,12 @@ export const MainPage = (props) => {
   const [newWeight, setNewWeight] = useState("");
   const [newPrice, setNewPrice] = useState("");
   const [newCarrierPrice, setNewCarrierPrice] = useState("");
+  const [income, setNewIncome] = useState(0);
+  const [selectedCheckbox, setSelectedCheckbox] = useState(null);
 
   //Modal, filters
   const [openModal, setOpenModal] = useState(false);
   const [modalFilter, setNewModalFilter] = useState("");
-  const [income, setNewIncome] = useState(0);
-  const [selectedCheckbox, setSelectedCheckbox] = useState(null);
   const [filtrclass, setnewfiltrclass] = useState(
     `flex h-6 ml-3 mt-1 hover:cursor-pointer`
   );
@@ -73,6 +74,11 @@ export const MainPage = (props) => {
     "flex hover:scale-105 bg-blue-400 pr-3 pl-3 rounded-xl ml-3";
   const filtrClassSmallHidden =
     "hidden flex hover:scale-105 bg-blue-400 pr-3 pl-3 rounded-xl ml-3";
+
+
+
+    //Modal, TypeOfCarriage
+    const [openModalTOC, setOpenModalTOC] = useState(false);
 
   //Login function
   const handleLogOut = (e) => {
@@ -322,6 +328,9 @@ export const MainPage = (props) => {
   const clearModalFilter = (filterClear) => {
     modalFilter[0][filterClear] = "";
   };
+
+  //Modal TypeOfCarriage
+
 
   //Copying function
   const copyData = (copyData) => {
@@ -675,6 +684,20 @@ export const MainPage = (props) => {
               </div>
             ) : null}
             <button
+              className="col-span-1 mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 mr-3 rounded-lg h-12 ml-3"
+              onClick={() => setOpenModalTOC(true)}
+              type="button"
+            >
+              Sposób przewozu
+            </button>
+            
+              <ModalTOC
+                open={openModalTOC}
+                onClose={() => setOpenModalTOC(false)}
+              />
+
+
+            <button
               className="col-span-1 mt-6 bg-orange-500 hover:bg-orange-700 text-white font-bold px-5 mr-3 rounded-lg h-12 ml-3"
               onClick={clear}
               type="button"
@@ -744,7 +767,7 @@ export const MainPage = (props) => {
         {pathname === "/orders" ? (
           <div>
             <button
-              className="absolute  mt-1 ml-3 text-lg cursor-pointer hover:text-xl hover:underline "
+              className="absolute  mt-1 ml-3 text-lg cursor-pointer"
               onClick={() => setOpenModal(true)}
             >
               <img
