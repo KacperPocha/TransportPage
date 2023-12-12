@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createPost, updatedOrder } from "../api/posts";
-import { useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Modal } from "./Modal";
 import imgLogOut from "../img/logout.png";
 import imgFilter from "../img/filter.png";
 import { PostList } from "./PostList";
 import { ModalTOC } from "./ModalTOC";
-
 
 export const MainPage = (props) => {
   //Date
@@ -52,10 +51,6 @@ export const MainPage = (props) => {
   const [roadNumber, setNewRoadNumber] = useState("");
   const [newDateIn, setNewDateIn] = useState("");
   const [newDateOut, setNewDateOut] = useState("");
-  const [newPalletsNumber, setNewPalletsNumber] = useState("");
-  const [newPalletsLength, setNewPalletsLength] = useState("");
-  const [newPalletsWidth, setNewPalletsWidth] = useState("");
-  const [newPalletsHeight, setNewPalletsHeight] = useState("");
   const [newWare, setNewWare] = useState("");
   const [newSpace, setNewSpace] = useState("");
   const [newWeight, setNewWeight] = useState("");
@@ -75,10 +70,13 @@ export const MainPage = (props) => {
   const filtrClassSmallHidden =
     "hidden flex hover:scale-105 bg-blue-400 pr-3 pl-3 rounded-xl ml-3";
 
+  //Modal, TypeOfCarriage
+  const [openModalTOC, setOpenModalTOC] = useState(false);
+  const [modalDataTOC, setNewModalDataTOC] = useState("");
+  const handleCallbackTOC = (dataTOC) => {
+    setNewModalDataTOC(dataTOC);
+  };
 
-
-    //Modal, TypeOfCarriage
-    const [openModalTOC, setOpenModalTOC] = useState(false);
 
   //Login function
   const handleLogOut = (e) => {
@@ -173,50 +171,6 @@ export const MainPage = (props) => {
           : copiedData.dateOut
         : ""
     );
-    setNewPalletsNumber(
-      isNaN(
-        pathname === "/edit/"
-          ? editValues.palletsNumber
-          : copiedData.palletsNumber
-      ) === false
-        ? pathname === "/edit/"
-          ? editValues.palletsNumber
-          : copiedData.palletsNumber
-        : ""
-    );
-    setNewPalletsLength(
-      isNaN(
-        pathname === "/edit/"
-          ? editValues.palletsLength
-          : copiedData.palletsLength
-      ) === false
-        ? pathname === "/edit/"
-          ? editValues.palletsLength
-          : copiedData.palletsLength
-        : ""
-    );
-    setNewPalletsWidth(
-      isNaN(
-        pathname === "/edit/"
-          ? editValues.palletsWidth
-          : copiedData.palletsWidth
-      ) === false
-        ? pathname === "/edit/"
-          ? editValues.palletsWidth
-          : copiedData.palletsWidth
-        : ""
-    );
-    setNewPalletsHeight(
-      isNaN(
-        pathname === "/edit/"
-          ? editValues.PalletsHeight
-          : copiedData.PalletsHeight
-      ) === false
-        ? pathname === "/edit/"
-          ? editValues.PalletsHeight
-          : copiedData.PalletsHeight
-        : ""
-    );
     setNewWare(
       isNaN(pathname === "/edit/" ? editValues.ware : copiedData.ware) === false
         ? pathname === "/edit/"
@@ -302,10 +256,10 @@ export const MainPage = (props) => {
         placeOut: newPlaceOut,
         dateIn: newDateIn,
         dateOut: newDateOut,
-        palletsNumber: newPalletsNumber,
-        palletsLength: newPalletsLength,
-        palletsWidth: newPalletsWidth,
-        PalletsHeight: newPalletsHeight,
+        packageNumber: modalDataTOC[0].packageNumber,
+        packageLength: modalDataTOC[0].packageLength,
+        packageWidth: modalDataTOC[0].packageWidth,
+        PalletsHeight: modalDataTOC[0].packageHeight,
         ware: newWare,
         space: newSpace,
         weight: newWeight,
@@ -331,7 +285,6 @@ export const MainPage = (props) => {
 
   //Modal TypeOfCarriage
 
-
   //Copying function
   const copyData = (copyData) => {
     setNewCopiedData(copyData);
@@ -353,10 +306,10 @@ export const MainPage = (props) => {
       roadNumber: editValues.roadNumber,
       dateIn: newDateIn,
       dateOut: newDateOut,
-      palletsNumber: newPalletsNumber,
-      palletsLength: newPalletsLength,
-      palletsWidth: newPalletsWidth,
-      PalletsHeight: newPalletsHeight,
+      packageNumber: modalDataTOC[0].packageNumber,
+      packageLength: modalDataTOC[0].packageLength,
+      packageWidth: modalDataTOC[0].packageWidth,
+      PalletsHeight: modalDataTOC[0].packageHeight,
       ware: newWare,
       space: newSpace,
       weight: newWeight,
@@ -376,10 +329,6 @@ export const MainPage = (props) => {
     setNewPlaceOut("");
     setNewDateIn("");
     setNewDateOut("");
-    setNewPalletsNumber("");
-    setNewPalletsLength("");
-    setNewPalletsWidth("");
-    setNewPalletsHeight("");
     setNewWare("");
     setNewSpace("");
     setNewWeight("");
@@ -504,70 +453,7 @@ export const MainPage = (props) => {
                 type="date"
               />
             </div>
-            <div className="w-full  px-3 mb-2 mr-2">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="PalletsNumber"
-              >
-                Ilość palet
-              </label>
-              <input
-                value={newPalletsNumber}
-                onChange={(e) => setNewPalletsNumber(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="PalletsNumber"
-                type="number"
-                placeholder="Ilość palet"
-              />
-            </div>
-            <div className="w-full  px-3 mb-2 mr-2">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="PalletsLength"
-              >
-                Długość palet [m]
-              </label>
-              <input
-                value={newPalletsLength}
-                onChange={(e) => setNewPalletsLength(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="PalletsLength"
-                type="number"
-                placeholder="Długość palet"
-              />
-            </div>
-            <div className="w-full  px-3 mb-2 mr-2">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="PalletsWidth"
-              >
-                Szerokość palet [m]
-              </label>
-              <input
-                value={newPalletsWidth}
-                onChange={(e) => setNewPalletsWidth(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="PalletsWidth"
-                type="number"
-                placeholder="Szerokość palet"
-              />
-            </div>
-            <div className="w-full  px-3 mb-2 mr-2">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="PalletsHeight"
-              >
-                Wysokość palet [cm]
-              </label>
-              <input
-                value={newPalletsHeight}
-                onChange={(e) => setNewPalletsHeight(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="PalletsHeight"
-                type="number"
-                placeholder="Wysokość palet"
-              />
-            </div>
+
             <div className="w-full  px-3 mb-2 mr-2">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -690,12 +576,12 @@ export const MainPage = (props) => {
             >
               Sposób przewozu
             </button>
-            
-              <ModalTOC
-                open={openModalTOC}
-                onClose={() => setOpenModalTOC(false)}
-              />
 
+            <ModalTOC
+              open={openModalTOC}
+              onClose={() => setOpenModalTOC(false)}
+              handleCallbackTOC={handleCallbackTOC}
+            />
 
             <button
               className="col-span-1 mt-6 bg-orange-500 hover:bg-orange-700 text-white font-bold px-5 mr-3 rounded-lg h-12 ml-3"

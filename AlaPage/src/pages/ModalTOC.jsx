@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-export const ModalTOC = ({ open, onClose }) => {
+export const ModalTOC = ({ open, onClose, handleCallbackTOC }) => {
   const [packagingType, setNewPackagingType] = useState("");
   const [transportType, setNewTransportType] = useState([]);
-  const [filters, setNewFilters] = useState([]);
+  const [dataTOC, setNewDataTOC] = useState([]);
+  const [nameOfPackage, setNewNameOfPackage] = useState("");
+  const [newPackageNumber, setNewPackageNumber] = useState("");
+  const [newPackageLength, setNewPackageLength] = useState("");
+  const [newPackageWidth, setNewPackageWidth] = useState("");
+  const [newPackageHeight, setNewPackageHeight] = useState("");
 
   const handleCheckboxChange = (value) => {
     setNewTransportType((prevSelected) => {
@@ -15,23 +20,47 @@ export const ModalTOC = ({ open, onClose }) => {
     });
   };
 
+  useEffect(() => {
+    setNewNameOfPackage(
+      packagingType === "Paleta"
+        ? "palety"
+        : packagingType === "Skrzynia"
+        ? "skrzyni"
+        : packagingType === "Paczka"
+        ? "paczki"
+        : ""
+    );
+  }, [packagingType]);
+
   const handleCheckbox = (checkboxId) => {
     setNewPackagingType(checkboxId);
   };
 
   const handleSubmitTOC = (e) => {
-    setNewFilters("");
+    setNewDataTOC("");
     e.preventDefault();
     onClose();
-    const newFilterTOC = {
+    const newDataTOC = {
       packagingType: packagingType,
-      transportType: transportType,
+      transportType: transportType[0],
+      packageNumber: newPackageNumber === "" ? "" : newPackageNumber,
+      packageLength: newPackageLength === "" ? "" : newPackageLength,
+      packageWidth: newPackageWidth === "" ? "" : newPackageWidth,
+      PalletsHeight: newPackageHeight === "" ? "" : newPackageHeight,
     };
-    setNewFilters((prevFiltersTOC) => [...prevFiltersTOC, newFilterTOC]);
+    setNewDataTOC((prevDataTOC) => [...prevDataTOC, newDataTOC]);
     setNewPackagingType("");
     setNewTransportType("");
     setNewPackagingType("");
+    setNewPackageNumber("");
+    setNewPackageLength("");
+    setNewPackageWidth("");
+    setNewPackageHeight("");
   };
+  useEffect (() => {
+    handleCallbackTOC(dataTOC)
+  },[dataTOC])
+
 
   if (!open) return null;
   return (
@@ -175,26 +204,78 @@ export const ModalTOC = ({ open, onClose }) => {
         </div>
         <div>
           {packagingType !== "" ? (
-            <div className="w-full  px-3 mb-2 mr-2">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="client"
-              >
-                Ilość{" "}
-                {packagingType === "Paleta"
-                  ? "palet"
-                  : packagingType === "Skrzynia"
-                  ? "skrzyń"
-                  : packagingType === "Paczka"
-                  ? "paczek"
-                  : "luzem"}
-              </label>
-              <input
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="client"
-                type="text"
-                placeholder="Ilość"
-              />
+            <div>
+              <div className="w-full  px-3 mb-2 mr-2">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="PalletsNumber"
+                >
+                  Ilość{" "}
+                  {packagingType === "Paleta"
+                    ? "palet"
+                    : packagingType === "Skrzynia"
+                    ? "skrzyń"
+                    : packagingType === "Paczka"
+                    ? "paczek"
+                    : "luzem"}
+                </label>
+                <input
+                  value={newPackageNumber}
+                  onChange={(e) => setNewPackageNumber(e.target.value)}
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="PalletsNumber"
+                  type="number"
+                  placeholder="Ilość"
+                />
+              </div>
+              <div className="w-full  px-3 mb-2 mr-2">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="PalletsLength"
+                >
+                  Długość {nameOfPackage} [m]
+                </label>
+                <input
+                  value={newPackageLength}
+                  onChange={(e) => setNewPackageLength(e.target.value)}
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="PalletsLength"
+                  type="number"
+                  placeholder="Długość"
+                />
+              </div>
+              <div className="w-full  px-3 mb-2 mr-2">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="PalletsWidth"
+                >
+                  Szerokość {nameOfPackage} [m]
+                </label>
+                <input
+                  value={newPackageWidth}
+                  onChange={(e) => setNewPackageWidth(e.target.value)}
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="PalletsWidth"
+                  type="number"
+                  placeholder="Szerokość"
+                />
+              </div>
+              <div className="w-full  px-3 mb-2 mr-2">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="PalletsHeight"
+                >
+                  Wysokość {nameOfPackage} [cm]
+                </label>
+                <input
+                  value={newPackageHeight}
+                  onChange={(e) => setNewPackageHeight(e.target.value)}
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  id="PalletsHeight"
+                  type="number"
+                  placeholder="Wysokość"
+                />
+              </div>
             </div>
           ) : null}
         </div>
