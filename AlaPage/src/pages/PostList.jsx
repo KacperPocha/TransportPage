@@ -55,7 +55,7 @@ export const PostList = (props) => {
             }
           >
             <div className="mt-3 mb-2 h-10 bg-blue-600 text-center place-content-center">
-              <div className="flex absolute">
+              <div className="flex absolute ">
                 <p className="mt-2 ml-2 bg-blue-400 px-2 rounded-xl">
                   {orders.roadNumber}
                 </p>
@@ -67,8 +67,24 @@ export const PostList = (props) => {
                 <p className="pt-1 font-bold text-lg grow">{orders.date}</p>
               </div>
             </div>
-            <div className="grid grid-cols-5  ml-3 mr-4">
-              <div className="w-full px-3 mr-2">
+            <div className="flex ml-3">
+              <div className="w-32">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="client"
+                >
+                  Status
+                </label>
+                <input
+                  type="text"
+                  id="disabled-input"
+                  aria-label="disabled input"
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  value={orders.completed}
+                  disabled
+                />
+              </div>
+              <div className="ml-10 w-60">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   htmlFor="client"
@@ -79,31 +95,30 @@ export const PostList = (props) => {
                   type="text"
                   id="disabled-input"
                   aria-label="disabled input"
-                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={orders.client}
                   disabled
                 />
               </div>
-              <div className="w-full px-3 mb-2 mr-2">
+              <div className="ml-10">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="DateIn"
+              >
+                Data załadunku
+              </label>
+              <input
+                value={orders.dateIn}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="DateIn"
+                type="date"
+                disabled
+              />
+            </div>
+            <div className="">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="carrier"
-                >
-                  Przewoźnik
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.carrier}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="InPlace"
+                  htmlFor="client"
                 >
                   Miejsce załadunku
                 </label>
@@ -111,15 +126,62 @@ export const PostList = (props) => {
                   type="text"
                   id="disabled-input"
                   aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={orders.placeIn}
                   disabled
                 />
               </div>
-              <div className="w-full  px-3 mb-2 mr-2">
+              <div className="w-32">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="OutPlace"
+                  htmlFor="client"
+                >
+                  Kraj
+                </label>
+                <input
+                  type="text"
+                  id="disabled-input"
+                  aria-label="disabled input"
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+           
+                  disabled
+                />
+              </div>
+              <div className="w-32">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="client"
+                >
+                  Kod
+                </label>
+                <input
+                  type="text"
+                  id="disabled-input"
+                  aria-label="disabled input"
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 
+                  disabled
+                />
+              </div>
+              <div className="ml-10">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="DateIn"
+              >
+                Data rozładunku
+              </label>
+              <input
+                value={orders.dateOut}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="DateIn"
+                type="date"
+                disabled
+              />
+            </div>
+            <div className="">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  htmlFor="client"
                 >
                   Miejsce rozładunku
                 </label>
@@ -127,250 +189,44 @@ export const PostList = (props) => {
                   type="text"
                   id="disabled-input"
                   aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   value={orders.placeOut}
                   disabled
                 />
               </div>
-              <div className="w-full  px-3 mb-2 mr-2">
+              <div className="w-32">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="DateIn"
+                  htmlFor="client"
                 >
-                  Data załadunku
+                  Kraj
                 </label>
                 <input
                   type="text"
                   id="disabled-input"
                   aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.dateIn}
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              
                   disabled
                 />
               </div>
-              <div className="w-full  px-3 mb-2 mr-2">
+              <div className="w-32">
                 <label
                   className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="DateOut"
+                  htmlFor="client"
                 >
-                  Data rozładunku
+                  Kod
                 </label>
                 <input
                   type="text"
                   id="disabled-input"
                   aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.dateOut}
+                  className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               
                   disabled
                 />
               </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="PalletsNumber"
-                >
-                  Ilość palet
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.palletsNumber}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="PalletsLength"
-                >
-                  Długość palet
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.palletsLength}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="PalletsWidth"
-                >
-                  Szerokość palet
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.palletsWidth}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="PalletsHeight"
-                >
-                  Wysokość palet
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.PalletsHeight}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="ware"
-                >
-                  Towar
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.ware}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="space"
-                >
-                  LDM
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.space}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="weight"
-                >
-                  Waga
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.weight}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="price"
-                >
-                  Wycena
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.price}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="CarrierPrice"
-                >
-                  Cena dla przewoźnika
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.carrierPrice}
-                  disabled
-                />
-              </div>
-              <div className="w-full  px-3 mb-2 mr-2">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="income"
-                >
-                  Zarobek
-                </label>
-                <input
-                  type="text"
-                  id="disabled-input"
-                  aria-label="disabled input"
-                  className="mr-3 mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  value={orders.income}
-                  disabled
-                />
-              </div>
-
-              <div className="flex items-center mb-3 justify-center mt-4">
-                <input
-                  disabled
-                  checked={orders.completed === "onTime" ? true : false}
-                  id="link-checkbox"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  htmlFor="link-checkbox"
-                  className="ml-2 block uppercase tracking-wide text-gray-700 text-md font-bold"
-                >
-                  Na czas
-                </label>
-              </div>
-              <div className="flex items-center mb-3 justify-center mt-4">
-                <input
-                  disabled
-                  checked={orders.completed === "late" ? true : false}
-                  id="link-checkbox"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  htmlFor="link-checkbox"
-                  className="ml-2 block uppercase tracking-wide text-gray-700 text-md font-bold"
-                >
-                  Spóźniony
-                </label>
-              </div>
-              <div className="flex items-center mb-3 justify-center mt-4">
-                <input
-                  disabled
-                  checked={orders.completed === "cancel" ? true : false}
-                  id="link-checkbox"
-                  type="checkbox"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                />
-                <label
-                  htmlFor="link-checkbox"
-                  className="ml-2 block uppercase tracking-wide text-gray-700 text-md font-bold"
-                >
-                  Anulowane
-                </label>
-              </div>
-              <div className="flex mr-1 ml-3 mt-2">
+              <div className="flex mr-1 ml-8 mt-2">
                 <button
                   type="button"
                   onClick={() => navigate(`/edit/`, { state: orders })}
@@ -386,14 +242,15 @@ export const PostList = (props) => {
                   Kopiuj
                 </button>
               </div>
-              <button
+             
+            </div>
+            <button
                 onClick={() => handelDelete(orders.id)}
                 type="button"
-                className="col-end-6 col-start-1 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                className="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm py-2 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
               >
                 {deletePostMutation.isLoading ? "Usuwanie" : "Usuń"}
               </button>
-            </div>
           </li>
         ))}
     </ul>

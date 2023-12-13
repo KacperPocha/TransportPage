@@ -256,10 +256,10 @@ export const MainPage = (props) => {
         placeOut: newPlaceOut,
         dateIn: newDateIn,
         dateOut: newDateOut,
-        packageNumber: modalDataTOC[0].packageNumber,
-        packageLength: modalDataTOC[0].packageLength,
-        packageWidth: modalDataTOC[0].packageWidth,
-        PalletsHeight: modalDataTOC[0].packageHeight,
+        packageNumber: modalDataTOC[0].packageNumber !== undefined ? modalDataTOC[0].packageNumber : "",
+        packageLength: modalDataTOC[0].packageLength !== undefined? modalDataTOC[0].packageLength: "",
+        packageWidth: modalDataTOC[0].packageWidth !== undefined ? modalDataTOC[0].packageWidth: "",
+        PalletsHeight: modalDataTOC[0].packageHeight !== undefined ? modalDataTOC[0].packageHeight: "",
         ware: newWare,
         space: newSpace,
         weight: newWeight,
@@ -357,7 +357,7 @@ export const MainPage = (props) => {
           onSubmit={pathname === "/edit/" ? handleEdit : handleSubmit}
           className="flex bg-blue-500 bg-opacity-60"
         >
-          <div className="w-full mt-3 mb-5 grid grid-cols-6 ml-3 mr-1">
+          <div className="w-full mt-3 mb-5 grid grid-cols-7 ml-3 mr-1">
             <div className="w-full px-3 mb-2 mr-2">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -368,7 +368,7 @@ export const MainPage = (props) => {
               <input
                 value={newClient}
                 onChange={handleInputChange}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="client"
                 type="text"
                 placeholder="Klient"
@@ -384,7 +384,7 @@ export const MainPage = (props) => {
               <input
                 value={newCarrier}
                 onChange={(e) => setNewCarrier(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="carrier"
                 type="text"
                 placeholder="Przewoźnik"
@@ -400,7 +400,7 @@ export const MainPage = (props) => {
               <input
                 value={newPlaceIn}
                 onChange={(e) => setNewPlaceIn(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="InPlace"
                 type="text"
                 placeholder="Miejsce załadunku"
@@ -416,7 +416,7 @@ export const MainPage = (props) => {
               <input
                 value={newPlaceOut}
                 onChange={(e) => setNewPlaceOut(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="OutPlace"
                 type="text"
                 placeholder="Miejsce rozładunku"
@@ -433,7 +433,7 @@ export const MainPage = (props) => {
               <input
                 value={newDateIn}
                 onChange={(e) => setNewDateIn(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="DateIn"
                 type="date"
               />
@@ -448,7 +448,7 @@ export const MainPage = (props) => {
               <input
                 value={newDateOut}
                 onChange={(e) => setNewDateOut(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="DateOut  "
                 type="date"
               />
@@ -464,7 +464,7 @@ export const MainPage = (props) => {
               <input
                 value={newWare}
                 onChange={(e) => setNewWare(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="ware"
                 type="text"
                 placeholder="Towar"
@@ -480,7 +480,7 @@ export const MainPage = (props) => {
               <input
                 value={newSpace}
                 onChange={(e) => setNewSpace(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="space"
                 type="number"
                 placeholder="Ldm"
@@ -496,7 +496,7 @@ export const MainPage = (props) => {
               <input
                 value={newWeight}
                 onChange={(e) => setNewWeight(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="weight"
                 type="number"
                 placeholder="Waga"
@@ -513,7 +513,7 @@ export const MainPage = (props) => {
               <input
                 value={newPrice}
                 onChange={(e) => setNewPrice(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="price"
                 type="number"
                 placeholder="Cena"
@@ -529,7 +529,7 @@ export const MainPage = (props) => {
               <input
                 value={newCarrierPrice}
                 onChange={(e) => setNewCarrierPrice(e.target.value)}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="CarrierPrice"
                 type="number"
                 placeholder="Cena przewoźnika"
@@ -545,7 +545,7 @@ export const MainPage = (props) => {
               <input
                 readOnly
                 value={isNaN(income) === true ? 0 : income}
-                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="income"
                 type="text"
                 placeholder="Zysk"
@@ -561,7 +561,7 @@ export const MainPage = (props) => {
                 </label>
                 <input
                   value={pathname === "/edit/" ? editValues.roadNumber : ""}
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="roadNumber"
                   type="text"
                   placeholder="Numer trasy"
@@ -570,7 +570,7 @@ export const MainPage = (props) => {
               </div>
             ) : null}
             <button
-              className="col-span-1 mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold px-5 mr-3 rounded-lg h-12 ml-3"
+              className="col-span-1 mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold mr-3 rounded-lg h-9 ml-3"
               onClick={() => setOpenModalTOC(true)}
               type="button"
             >
@@ -584,7 +584,7 @@ export const MainPage = (props) => {
             />
 
             <button
-              className="col-span-1 mt-6 bg-orange-500 hover:bg-orange-700 text-white font-bold px-5 mr-3 rounded-lg h-12 ml-3"
+              className="col-span-1 mt-3 bg-orange-500 hover:bg-orange-700 text-white font-bold px-5 mr-3 rounded-lg h-9 ml-3"
               onClick={clear}
               type="button"
             >
@@ -593,8 +593,8 @@ export const MainPage = (props) => {
 
             <div className="flex items-center mb-4 mt-3 justify-center mt-4">
               <input
-                onChange={() => handleCheckbox("onTime")}
-                checked={selectedCheckbox === "onTime"}
+                onChange={() => handleCheckbox("Na czas")}
+                checked={selectedCheckbox === "Na czas"}
                 id="link-checkbox"
                 type="checkbox"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -608,8 +608,8 @@ export const MainPage = (props) => {
             </div>
             <div className="flex items-center mb-4 mt-3 justify-center mt-4">
               <input
-                onChange={() => handleCheckbox("late")}
-                checked={selectedCheckbox === "late"}
+                onChange={() => handleCheckbox("Spóźniony")}
+                checked={selectedCheckbox === "Spóźniony"}
                 id="link-checkbox"
                 type="checkbox"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -623,8 +623,8 @@ export const MainPage = (props) => {
             </div>
             <div className="flex items-center mb-4 mt-3 justify-center mt-4">
               <input
-                onChange={() => handleCheckbox("cancel")}
-                checked={selectedCheckbox === "cancel"}
+                onChange={() => handleCheckbox("Anulowane")}
+                checked={selectedCheckbox === "Anulowane"}
                 id="link-checkbox"
                 type="checkbox"
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
@@ -640,7 +640,7 @@ export const MainPage = (props) => {
             <button
               onClick={pathname === "/edit/" ? handleEdit : handleSubmit}
               type="submit"
-              className="col-end-7 rounded-lg ml-3 col-start-1 focus:outline-none text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-red-300 text-white font-bold px-5 py-2.5 mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              className="col-end-7 rounded-lg ml-3 col-start-1 mt-2 focus:outline-none text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-red-300 text-white font-bold py-2 mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
               {pathname === "/edit/"
                 ? "Aktualizuj"
