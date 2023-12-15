@@ -46,7 +46,7 @@ export const ModalTOC = ({ open, onClose, handleCallbackTOC }) => {
       packageNumber: newPackageNumber === "" ? "" : newPackageNumber,
       packageLength: newPackageLength === "" ? "" : newPackageLength,
       packageWidth: newPackageWidth === "" ? "" : newPackageWidth,
-      PalletsHeight: newPackageHeight === "" ? "" : newPackageHeight,
+      packageHeight: newPackageHeight === "" ? "" : newPackageHeight,
     };
     setNewDataTOC((prevDataTOC) => [...prevDataTOC, newDataTOC]);
     setNewPackagingType("");

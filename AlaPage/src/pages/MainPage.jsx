@@ -47,6 +47,10 @@ export const MainPage = (props) => {
   const [newClient, setNewClient] = useState("");
   const [newCarrier, setNewCarrier] = useState("");
   const [newPlaceIn, setNewPlaceIn] = useState("");
+  const [newCountryIn , setNewCountryIn] = useState("")
+  const [newCountryOut , setNewCountryOut] = useState("")
+  const [newCodeIn , setNewCodeIn] = useState("")
+  const [newCodeOut , setNewCodeOut] = useState("")
   const [newPlaceOut, setNewPlaceOut] = useState("");
   const [roadNumber, setNewRoadNumber] = useState("");
   const [newDateIn, setNewDateIn] = useState("");
@@ -57,6 +61,7 @@ export const MainPage = (props) => {
   const [newPrice, setNewPrice] = useState("");
   const [newCarrierPrice, setNewCarrierPrice] = useState("");
   const [income, setNewIncome] = useState(0);
+  const [comment, setNewComment] = useState("");
   const [selectedCheckbox, setSelectedCheckbox] = useState(null);
 
   //Modal, filters
@@ -76,8 +81,7 @@ export const MainPage = (props) => {
   const handleCallbackTOC = (dataTOC) => {
     setNewModalDataTOC(dataTOC);
   };
-
-
+  console.log(modalDataTOC);
   //Login function
   const handleLogOut = (e) => {
     setUser({});
@@ -136,6 +140,38 @@ export const MainPage = (props) => {
         ? pathname === "/edit/"
           ? editValues.carrier
           : copiedData.carrier
+        : ""
+    );
+    setNewCodeIn(
+      isNaN(pathname === "/edit/" ? editValues.codeIn : copiedData.codeIn) ===
+        false
+        ? pathname === "/edit/"
+          ? editValues.codeIn
+          : copiedData.codeIn
+        : ""
+    );
+    setNewCountryIn(
+      isNaN(pathname === "/edit/" ? editValues.countryIn : copiedData.countryIn) ===
+        false
+        ? pathname === "/edit/"
+          ? editValues.countryIn
+          : copiedData.countryIn
+        : ""
+    );
+    setNewCodeOut(
+      isNaN(pathname === "/edit/" ? editValues.codeOut : copiedData.codeOut) ===
+        false
+        ? pathname === "/edit/"
+          ? editValues.codeOut
+          : copiedData.codeOut
+        : ""
+    );
+    setNewCountryOut(
+      isNaN(pathname === "/edit/" ? editValues.countryOut : copiedData.countryOut) ===
+        false
+        ? pathname === "/edit/"
+          ? editValues.countryOut
+          : copiedData.countryOut
         : ""
     );
     setNewPlaceIn(
@@ -222,6 +258,14 @@ export const MainPage = (props) => {
           : copiedData.completed
         : ""
     );
+    setNewComment(
+      isNaN(pathname === "/edit/" ? editValues.comment : copiedData.comment) ===
+        false
+        ? pathname === "/edit/"
+          ? editValues.comment
+          : copiedData.comment
+        : ""
+    );
   }, [copiedData, editValues]);
 
   useEffect(() => {
@@ -252,14 +296,25 @@ export const MainPage = (props) => {
         client: newClient,
         carrier: newCarrier,
         roadNumber: roadNumber,
+        countryIn : newCountryIn,
+        countryOut : newCountryOut,
+        codeIn : newCodeIn,
+        codeOut : newCodeOut,
         placeIn: newPlaceIn,
         placeOut: newPlaceOut,
         dateIn: newDateIn,
         dateOut: newDateOut,
-        packageNumber: modalDataTOC[0].packageNumber !== undefined ? modalDataTOC[0].packageNumber : "",
-        packageLength: modalDataTOC[0].packageLength !== undefined? modalDataTOC[0].packageLength: "",
-        packageWidth: modalDataTOC[0].packageWidth !== undefined ? modalDataTOC[0].packageWidth: "",
-        PalletsHeight: modalDataTOC[0].packageHeight !== undefined ? modalDataTOC[0].packageHeight: "",
+        packageNumber:
+          isNaN(modalDataTOC[0].packageNumber) === true ? "" : modalDataTOC[0].packageNumber,
+
+        packageLength:
+          isNaN(modalDataTOC[0].packageLength) === true ? "" : modalDataTOC[0].packageLength,
+
+        packageWidth:
+          isNaN(modalDataTOC[0].packageWidth) === true ? "" : modalDataTOC[0].packageWidth,
+
+        packageHeight:
+          isNaN(modalDataTOC[0].packageHeight) === true ? "" : modalDataTOC[0].packageHeight,
         ware: newWare,
         space: newSpace,
         weight: newWeight,
@@ -267,6 +322,7 @@ export const MainPage = (props) => {
         carrierPrice: newCarrierPrice,
         income: income,
         completed: selectedCheckbox,
+        comment: comment,
       });
     } else {
       alert("Dodajesz zlecenie w innym miesiącu!");
@@ -301,6 +357,10 @@ export const MainPage = (props) => {
       date: currentDate,
       client: newClient,
       carrier: newCarrier,
+      countryIn : newCountryIn,
+      countryOut : newCountryOut,
+      codeIn : newCodeIn,
+      codeOut : newCodeOut,
       placeIn: newPlaceIn,
       placeOut: newPlaceOut,
       roadNumber: editValues.roadNumber,
@@ -317,6 +377,7 @@ export const MainPage = (props) => {
       carrierPrice: newCarrierPrice,
       income: income,
       completed: selectedCheckbox,
+      comment: comment,
     });
     navigate("/orders");
   };
@@ -336,6 +397,7 @@ export const MainPage = (props) => {
     setNewCarrierPrice("");
     setSelectedCheckbox("");
     setNewCopiedData("");
+    setNewComment("");
   };
 
   return (
@@ -393,6 +455,21 @@ export const MainPage = (props) => {
             <div className="w-full  px-3 mb-2 mr-2">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="DateIn"
+              >
+                Data załadunku
+              </label>
+              <input
+                value={newDateIn}
+                onChange={(e) => setNewDateIn(e.target.value)}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="DateIn"
+                type="date"
+              />
+            </div>
+            <div className="w-full  px-3 mb-2 mr-2">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 htmlFor="InPlace"
               >
                 Miejsce załadunku
@@ -404,6 +481,53 @@ export const MainPage = (props) => {
                 id="InPlace"
                 type="text"
                 placeholder="Miejsce załadunku"
+              />
+            </div>
+            <div className="w-full  px-3 mb-2 mr-2">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="InPlace"
+              >
+                Kraj
+              </label>
+              <input
+                value={newCountryIn}
+                onChange={(e) => setNewCountryIn(e.target.value)}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="InPlace"
+                type="text"
+                placeholder="Miejsce załadunku"
+              />
+            </div>
+            <div className="w-full  px-3 mb-2 mr-2">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="InPlace"
+              >
+                Kod
+              </label>
+              <input
+                value={newCodeIn}
+                onChange={(e) => setNewCodeIn(e.target.value)}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="InPlace"
+                type="text"
+                placeholder="Miejsce załadunku"
+              />
+            </div>
+            <div className="w-full  px-3 mb-2 mr-2">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="DateOut"
+              >
+                Data rozładunku
+              </label>
+              <input
+                value={newDateOut}
+                onChange={(e) => setNewDateOut(e.target.value)}
+                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="DateOut  "
+                type="date"
               />
             </div>
             <div className="w-full  px-3 mb-2 mr-2">
@@ -422,38 +546,38 @@ export const MainPage = (props) => {
                 placeholder="Miejsce rozładunku"
               />
             </div>
-
             <div className="w-full  px-3 mb-2 mr-2">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="DateIn"
+                htmlFor="InPlace"
               >
-                Data załadunku
+                Kraj
               </label>
               <input
-                value={newDateIn}
-                onChange={(e) => setNewDateIn(e.target.value)}
+                value={newCountryOut}
+                onChange={(e) => setNewCountryOut(e.target.value)}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="DateIn"
-                type="date"
+                id="InPlace"
+                type="text"
+                placeholder="Miejsce załadunku"
               />
             </div>
             <div className="w-full  px-3 mb-2 mr-2">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="DateOut"
+                htmlFor="InPlace"
               >
-                Data rozładunku
+                Kod
               </label>
               <input
-                value={newDateOut}
-                onChange={(e) => setNewDateOut(e.target.value)}
+                value={newCodeOut}
+                onChange={(e) => setNewCodeOut(e.target.value)}
                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                id="DateOut  "
-                type="date"
+                id="InPlace"
+                type="text"
+                placeholder="Miejsce załadunku"
               />
             </div>
-
             <div className="w-full  px-3 mb-2 mr-2">
               <label
                 className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -570,7 +694,7 @@ export const MainPage = (props) => {
               </div>
             ) : null}
             <button
-              className="col-span-1 mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold mr-3 rounded-lg h-9 ml-3"
+              className="col-span-1 mt-6 bg-blue-500 hover:bg-blue-700 text-white font-bold mr-3 rounded-lg h-10 ml-3"
               onClick={() => setOpenModalTOC(true)}
               type="button"
             >
@@ -584,14 +708,14 @@ export const MainPage = (props) => {
             />
 
             <button
-              className="col-span-1 mt-3 bg-orange-500 hover:bg-orange-700 text-white font-bold px-5 mr-3 rounded-lg h-9 ml-3"
+              className="col-span-1 mt-6 bg-orange-500 hover:bg-orange-700 text-white font-bold px-5 mr-3 rounded-lg h-10 ml-3"
               onClick={clear}
               type="button"
             >
               Czyść
             </button>
 
-            <div className="flex items-center mb-4 mt-3 justify-center mt-4">
+            <div className="flex items-center mb-4 mt-3 justify-center mt-7">
               <input
                 onChange={() => handleCheckbox("Na czas")}
                 checked={selectedCheckbox === "Na czas"}
@@ -606,7 +730,7 @@ export const MainPage = (props) => {
                 Na czas
               </label>
             </div>
-            <div className="flex items-center mb-4 mt-3 justify-center mt-4">
+            <div className="flex items-center mb-4 mt-3 justify-center mt-7">
               <input
                 onChange={() => handleCheckbox("Spóźniony")}
                 checked={selectedCheckbox === "Spóźniony"}
@@ -621,7 +745,7 @@ export const MainPage = (props) => {
                 Spóźniony
               </label>
             </div>
-            <div className="flex items-center mb-4 mt-3 justify-center mt-4">
+            <div className="flex items-center mb-4 mt-3 justify-center mt-7">
               <input
                 onChange={() => handleCheckbox("Anulowane")}
                 checked={selectedCheckbox === "Anulowane"}
@@ -636,11 +760,26 @@ export const MainPage = (props) => {
                 Anulowane
               </label>
             </div>
-
+            <div className=" col-span-7 mr-3 ml-2">
+              <label
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                htmlFor="client"
+              >
+                Uwagi
+              </label>
+              <textarea
+                className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                type="text"
+                id="disabled-input"
+                aria-label="disabled input"
+                value={comment}
+                onChange={(e) => setNewComment(e.target.value)}
+              />
+            </div>
             <button
               onClick={pathname === "/edit/" ? handleEdit : handleSubmit}
               type="submit"
-              className="col-end-7 rounded-lg ml-3 col-start-1 mt-2 focus:outline-none text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-red-300 text-white font-bold py-2 mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+              className="col-span-7 rounded-lg ml-2 col-start-1 mt-2 focus:outline-none text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-red-300 text-white font-bold py-2 mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             >
               {pathname === "/edit/"
                 ? "Aktualizuj"
