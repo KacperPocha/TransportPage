@@ -53,9 +53,7 @@ export const PostList = (props) => {
                 : "bg-white"
             }
           >
-            <div
-              onClick={() => navigate(`/order/${orders.id}`, { state: orders })}
-            >
+            <div className="cursor-pointer" onClick={() => navigate(`/order/${orders.id}`, {state:orders})}>
               <div className="mt-3 mb-2 h-10 bg-blue-600 text-center place-content-center">
                 <div className="flex absolute ">
                   <p className="mt-2 ml-2 bg-blue-400 px-2 rounded-xl">

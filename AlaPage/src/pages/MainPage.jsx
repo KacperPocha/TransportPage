@@ -68,7 +68,7 @@ export const MainPage = (props) => {
   const [openModal, setOpenModal] = useState(false);
   const [modalFilter, setNewModalFilter] = useState("");
   const [filtrclass, setnewfiltrclass] = useState(
-    `flex h-6 ml-3 mt-1 hover:cursor-pointer`
+    `flex h-6 ml-3 mt-2 hover:cursor-pointer`
   );
   const filtrClassSmallShow =
     "flex hover:scale-105 bg-blue-400 pr-3 pl-3 rounded-xl ml-3";

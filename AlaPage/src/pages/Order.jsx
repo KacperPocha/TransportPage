@@ -8,7 +8,7 @@ export const Order = () => {
   console.log(order);
 
   return (
-    <div>
+    <div className="bg-blue-400">
       <div className="mb-2 h-10 bg-blue-600 text-center place-content-center">
         <div className="flex absolute ">
           <p className="mt-2 ml-2 bg-blue-400 px-2 rounded-xl">
@@ -372,14 +372,12 @@ export const Order = () => {
           />
         </div>
       </div>
-      <div
-        className="mb-2 h-10 bg-blue-600 text-center mt-2"
-        onClick={() => navigate(`/orders`)}
-      >
-        <p className="block uppercase tracking-wide text-gray-700 text-[20px] font-bold mb-2 hover:scale-105 cursor-pointer">
-          Wróć do strony głównej
-        </p>
-      </div>
+      <button
+            className="block uppercase tracking-wide text-gray-700 text-md font-bold bg-blue-500 h-10 w-full hover:text-xl mt-3"
+            onClick={() => navigate(`/orders`)}
+          >
+            Wróć
+          </button>
     </div>
   );
 };

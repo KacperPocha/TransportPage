@@ -8,6 +8,7 @@ import { MainPage } from "./MainPage";
 export const EditPage = () => {
   const location = useLocation()
   const order = location.state
+  console.log(order)
 
   return (
     <div>
