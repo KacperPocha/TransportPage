@@ -67,7 +67,7 @@ export const PostList = (props) => {
                   <p className="pt-1 font-bold text-lg grow">{orders.date}</p>
                 </div>
               </div>
-              <div className="flex ml-3">
+              <div className="flex ml-8">
                 <div className="w-32">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -84,7 +84,7 @@ export const PostList = (props) => {
                     disabled
                   />
                 </div>
-                <div className="ml-10 w-60">
+                <div className="ml-10 w-72">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     htmlFor="client"
@@ -115,7 +115,7 @@ export const PostList = (props) => {
                     disabled
                   />
                 </div>
-                <div className="">
+                <div className="w-52">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     htmlFor="client"
@@ -177,7 +177,7 @@ export const PostList = (props) => {
                     disabled
                   />
                 </div>
-                <div className="">
+                <div className="w-52">
                   <label
                     className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     htmlFor="client"
@@ -225,7 +225,10 @@ export const PostList = (props) => {
                     disabled
                   />
                 </div>
-                <div className="flex mr-1 ml-8 mt-2">
+               
+              </div>
+            </div>
+            <div className="flex mr-1 ml-8 mt-2">
                   <button
                     type="button"
                     onClick={() => navigate(`/edit/`, { state: orders })}
@@ -241,8 +244,6 @@ export const PostList = (props) => {
                     Kopiuj
                   </button>
                 </div>
-              </div>
-            </div>
             <button
               onClick={() => handelDelete(orders.id)}
               type="button"

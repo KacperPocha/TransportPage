@@ -705,6 +705,7 @@ export const MainPage = (props) => {
               open={openModalTOC}
               onClose={() => setOpenModalTOC(false)}
               handleCallbackTOC={handleCallbackTOC}
+             
             />
 
             <button
